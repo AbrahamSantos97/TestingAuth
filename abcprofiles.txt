@@ -1,0 +1,47 @@
+este es un documento donde almacenar la informacion sobre manejos de perfiles en un nivel basico
+
+-primero
+    necesitas agregar los perfiles al pom, esto servira para que al momento de que este se este empaquetando
+    y creando el war, pueda generar uno pero del perfil en especifico
+
+    Una de las principales ventajas de esto es que puede bloquear ciertos beans para que no se creen al momento de
+    hacer un despligue, los beans pueden ser una clase de config , y de esa manera tener tu bean de config dependiendo 
+    el perfil con el cual corras la aplicacion.
+
+    eg: estructura de los perfiles sobre el pom
+    <profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
+-Segundo
+    Se debe indicar la ruta de properties, con la finalidad de establecer el perfil con el que se ha iniciado la aplicacion
+    <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <filtering>true</filtering>
+            </resource>
+    </resources>
+
+-Tercero
+    Los archivos de configuracion como los .properties o .yaml se pueden modificar sus atributos dependiendo el perfil con el 
+    que se este corriendo la aplicacion, use como ejemplo el archivo .properties de este proyecto
+
+-Cuarto
+    Para correr la aplicacion utilizando maven directamente es el comando
+    mvn spring-boot:run -Pprod (prod = perfil)
+    En el caso de solo tener el wrapper, utilice el comando asi:
+    ./mvnw spring-boot:run -Pprod (prod = perfil)
+

@@ -1,6 +1,5 @@
 package com.example.restexample.restexample.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +23,6 @@ public class ConfigurationService {
     private final UserDetailsService userDetailsService;
     private final AuthEntryPointJwt unauthorizedHandler;
 
-    @Autowired
     public ConfigurationService(@Qualifier("securityService") UserDetailsService userDetailsService, AuthEntryPointJwt authEntryPointJwt){
         this.userDetailsService = userDetailsService;
         this.unauthorizedHandler = authEntryPointJwt;

@@ -1,10 +1,6 @@
 package com.example.restexample.restexample.services.auth;
-
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.restexample.restexample.dal.bridges.BridgeLogin;
 import com.example.restexample.restexample.dal.models.Usuarios;
 import com.example.restexample.restexample.dal.repositories.UsuariosRepository;
@@ -14,7 +10,6 @@ public class LoginService implements BridgeLogin {
 
     private final UsuariosRepository usuariosRepository;
 
-    @Autowired
     public LoginService(UsuariosRepository usuariosRepository){
         this.usuariosRepository = usuariosRepository;
     }
