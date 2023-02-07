@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.restexample.restexample.dal.models.Usuarios;
@@ -29,7 +30,7 @@ public class UsuarioDto implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
     @Override
     public String getUsername() {

@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import com.example.restexample.restexample.dal.dtos.SeccionesDto;
 import com.example.restexample.restexample.dal.repositories.SeccionesRepository;
 
 @RestController
+@Scope("prototype")
 @RequestMapping(value = {"/home"})
 public class HomeController {
 
