@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ public class LoginController {
     @Qualifier("serviceLogeo")
     BridgeLogin bridgeLogin;
 
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+
     @Autowired
     private JwtUtils jwtUtils;
     
@@ -35,6 +39,7 @@ public class LoginController {
             Optional<Usuarios> s = bridgeLogin.getUserByCorreo(usuarioDto.getCorreo());
             if(s.isPresent()){
                 s.get().setToken(jwtUtils.generateToken(s.get()));
+                s.get().setApellidoMaterno(activeProfile);
                 return ResponseEntity.ok(s.get());
             }
             return ResponseEntity.badRequest().build();
